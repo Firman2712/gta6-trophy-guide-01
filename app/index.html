@@ -3,43 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI Trophy Guide &amp; Tracker — All 55 PS5 Trophies</title>
-<meta name="description" content="Offline guide and tracker for all 55 Grand Theft Auto VI trophies on PlayStation 5: checklist, cited guides, platinum roadmap, missable warnings, and the 20 Nov 2026 newly-confirmed methods.">
+<title>Leonida Ledger — GTA 6 Trophy Guide &amp; Tracker</title>
+<meta name="description" content="An offline guide and tracker for all 55 Grand Theft Auto VI trophies on PlayStation 5: checklist, roadmap, missable warning, and a cited guide for every trophy.">
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="masthead">
-  <div class="masthead-inner">
-    <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; Offline guide</p>
-    <h1>Leonida Trophy Guide</h1>
-    <p class="lede">Every one of the 55 trophies, with a guide in our own words, its sources, a road map to the platinum — and a checklist that remembers your progress.</p>
-    <div class="facts" id="facts"></div>
-    <div class="progress-wrap" aria-label="Trophy progress">
-      <div class="progress-line"><span id="progressText">Loading…</span><span id="progressPct"></span></div>
-      <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
-      <p class="progress-sub" id="progressSub"></p>
-    </div>
+  <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; works offline</p>
+  <h1>Leonida Ledger</h1>
+  <p class="tagline">Every one of the 55 trophies, with a plan to the platinum and a guide you can trust — checked, cited, and saved in your browser.</p>
+  <dl class="statstrip">
+    <div><dt>Trophies</dt><dd>55</dd></div>
+    <div><dt>Platinum</dt><dd>1</dd></div>
+    <div><dt>Gold</dt><dd>2</dd></div>
+    <div><dt>Silver</dt><dd>6</dd></div>
+    <div><dt>Bronze</dt><dd>46</dd></div>
+    <div><dt>Hidden</dt><dd>28</dd></div>
+    <div><dt>Online</dt><dd>0</dd></div>
+    <div><dt>To platinum</dt><dd>~200 h</dd></div>
+  </dl>
+  <div class="progressline" role="status">
+    <span id="earnedLabel">0 of 55 earned</span>
+    <div class="progressbar"><div id="progressFill" style="width:0%"></div></div>
+    <span id="percentLabel">0%</span>
   </div>
 </header>
 
 <main>
-  <section class="update-banner" aria-label="20 November 2026 update">
-    <strong>&#10022; Updated 20 Nov 2026 — 4 trophies newly confirmed.</strong>
-    <span><b>In The Beginning…</b> (Apple Martini at the Ocean View Rooftop Bar), <b>Capital Offense</b> (blue Banshee showroom smash), <b>Ten Pin</b> (10 bike kicks in 60 seconds) and <b>The Truth Is Out There</b> (UFO Easter Egg) finally have real, cited methods. Fair Game, Let&rsquo;s Go Bowling, Personal Best and Actions Speak Louder are expanded too — and Bad Luck, I Guess has a new lead, still unconfirmed.</span>
-    <button type="button" id="showNew">Show the 4 newly confirmed</button>
+  <section class="freshbanner" id="freshBanner">
+    <h2><span class="freshdot" aria-hidden="true"></span>Newly confirmed — 4 trophies</h2>
+    <p>PowerPyx has now pinned down four trophies that were unknown at launch: <strong>In The Beginning…</strong> (Ocean Beach cocktail), <strong>Capital Offense</strong> (blue Banshee through the showroom window), <strong>The Truth Is Out There</strong> (the UFO easter egg), and <strong>Ten Pin</strong> (bike melee drive-by). Each carries a <span class="badge fresh">Newly confirmed</span> badge in the list.</p>
+    <button type="button" id="showFreshBtn">Show only the 4 newly confirmed</button>
   </section>
 
-  <section class="warn" id="missableBanner" aria-label="Missable trophy warning">
-    <strong>&#9888; One trophy may be missable.</strong>
-    <span><b>Positive Mental Attitude</b> — meditate at every spot. The first meditation, with Lucia at Jason&rsquo;s house after the mission Down to Earth, disappears once Chapter 1 ends. Do it in Chapter 1, before you finish the chapter.</span>
-    <button type="button" id="showMissable">Show it</button>
+  <section class="warnbox" id="missableBox">
+    <h2>One trophy can be missed — protect it in Chapter 1</h2>
+    <p><strong>Positive Mental Attitude</strong> (meditate at every spot) is the only trophy PowerPyx flags as possibly missable. In Chapter 1, after the mission Down to Earth, Lucia talks about meditating in the kitchen in the morning. Follow her to the balcony and accept — after Chapter 1 that moment is gone. Everything else on this list can be finished after the story.</p>
   </section>
 
-  <section class="controls" aria-label="Tracker controls">
-    <div class="control-row">
-      <label class="search-label">Search <input id="search" type="search" placeholder="Trophy name, mission or keyword…" autocomplete="off"></label>
-      <label class="select-label">Grade
-        <select id="gradeFilter">
+  <section class="roadmap" id="roadmap">
+    <h2>The road to the platinum — 4 stages</h2>
+    <p class="sectionnote">Built from the official descriptions and PowerPyx&rsquo;s roadmap. Difficulty 4/10, one playthrough, no mission replay — so keep a save at the start and end of each chapter. Cheats disable trophies and saving: keep them off.</p>
+    <ol class="stages">
+      <li data-stage="1">
+        <h3>Stage 1 — Play the story, guard the meditation</h3>
+        <p class="stagehours">60–80 hours &middot; Chapters 1–5</p>
+        <p>Finish the story and enjoy it. Do the Chapter 1 balcony meditation with Lucia, scan vehicles and study animals as you go, and take every optional mission you pass. Progress toward the 100% checklist already counts.</p>
+        <p class="stagecount" id="stageCount1"></p>
+      </li>
+      <li data-stage="2">
+        <h3>Stage 2 — The 100% checklist &amp; 70 of 80 challenges</h3>
+        <p class="stagehours">~100 hours &middot; after the story</p>
+        <p>The checklist opens under Progress, then Stats. It is lenient — about 60% true completion — and needs every robbery, underwater find, shooting range, drone race and Bret quest, plus 70 of 80 challenges, so you can skip the hardest ten.</p>
+        <p class="stagecount" id="stageCount2"></p>
+      </li>
+      <li data-stage="3">
+        <h3>Stage 3 — Strangers &amp; Freaks and side cleanup</h3>
+        <p class="stagehours">~10 hours &middot; free-roam</p>
+        <p>Strangers are not needed for 100%, so finish the 8 counting strands and the character questlines that are still open — Andy, Kenton, Billy, Randy, Tyrone and Bret — plus any side trophy left behind.</p>
+        <p class="stagecount" id="stageCount3"></p>
+      </li>
+      <li data-stage="4">
+        <h3>Stage 4 — Money, garages, and the last sweeps</h3>
+        <p class="stagehours">Cleanup &middot; free-roam</p>
+        <p>Launder $250,000 of marked bills, spend $100,000 in shops, buy the 8 garages, register 10 vehicles, and mop up the remaining activities and collectibles. The platinum pops with the last trophy.</p>
+        <p class="stagecount" id="stageCount4"></p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="tracker" id="tracker">
+    <h2>Trophy checklist</h2>
+    <div class="toolbar">
+      <label class="searchwrap">Search
+        <input type="search" id="search" placeholder="Name, mission, or keyword…" autocomplete="off">
+      </label>
+      <label class="gradewrap">Grade
+        <select id="grade">
           <option value="all">All grades</option>
           <option value="platinum">Platinum</option>
           <option value="gold">Gold</option>
@@ -47,49 +88,38 @@
           <option value="bronze">Bronze</option>
         </select>
       </label>
-      <label class="toggle"><input id="spoilerToggle" type="checkbox"> <span>Spoiler-free mode <small>hide story trophy names until earned</small></span></label>
-      <label class="toggle"><input id="earnedOnly" type="checkbox"> <span>Earned only</span></label>
+      <fieldset class="kindchips" id="kindChips">
+        <legend>Kind</legend>
+        <button type="button" data-kind="all" class="chip on" aria-pressed="true">All</button>
+        <button type="button" data-kind="story" class="chip" aria-pressed="false">Story</button>
+        <button type="button" data-kind="side" class="chip" aria-pressed="false">Side quests</button>
+        <button type="button" data-kind="collectible" class="chip" aria-pressed="false">Collectibles</button>
+        <button type="button" data-kind="activity" class="chip" aria-pressed="false">Activities</button>
+        <button type="button" data-kind="crime" class="chip" aria-pressed="false">Crime</button>
+        <button type="button" data-kind="missable" class="chip" aria-pressed="false">Missable</button>
+        <button type="button" data-kind="fresh" class="chip" aria-pressed="false">Newly confirmed</button>
+      </fieldset>
+      <label class="toggle"><input type="checkbox" id="spoiler"> Spoiler-free mode <span class="hint">hides story trophy names until earned</span></label>
+      <div class="filebtns">
+        <button type="button" id="exportBtn">Export progress</button>
+        <button type="button" id="importBtn">Import progress</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+        <button type="button" id="resetBtn">Reset all</button>
+      </div>
     </div>
-    <div class="filter-row" id="kindFilters" role="group" aria-label="Filter by kind">
-      <button type="button" data-kind="all" class="kind-btn active">All 55</button>
-      <button type="button" data-kind="new" class="kind-btn fresh-btn">&#10022; Newly confirmed</button>
-      <button type="button" data-kind="story" class="kind-btn">Story</button>
-      <button type="button" data-kind="missable" class="kind-btn">Missable</button>
-      <button type="button" data-kind="collectibles" class="kind-btn">Collectibles</button>
-      <button type="button" data-kind="activities" class="kind-btn">Activities</button>
-      <button type="button" data-kind="online" class="kind-btn">Online</button>
-    </div>
-    <div class="control-row">
-      <button type="button" id="exportBtn" class="btn">Export progress</button>
-      <label class="btn import-btn">Import progress <input id="importFile" type="file" accept="application/json,.json"></label>
-      <button type="button" id="resetBtn" class="btn ghost">Reset progress</button>
-      <span class="saved-note" id="savedNote">Progress saves in this browser automatically.</span>
-    </div>
+    <p class="resultline" id="resultLine" role="status"></p>
+    <div id="list" class="trophylist"></div>
+    <noscript><p class="warnbox">This tracker needs JavaScript. The trophy list and guides live in <code>data/trophies.json</code>.</p></noscript>
   </section>
 
-  <section class="roadmap" id="roadmapSection" aria-label="Roadmap to the platinum">
-    <h2>Road to the platinum: <span class="platinum-name">Vice Got a Price!</span></h2>
-    <p class="roadmap-intro">One playthrough, about 200 hours, difficulty 4/10 (PowerPyx). No online trophies, no mission replay, free roam after the story. Four stages, in order. Newly confirmed trophies are marked &#9733; in the stage chips below.</p>
-    <div id="roadmapStages"></div>
-  </section>
-
-  <section aria-label="Trophy checklist">
-    <h2 id="listHeading">Trophy checklist</h2>
-    <p class="list-note" id="listNote" aria-live="polite"></p>
-    <div id="trophyList" class="trophy-list"></div>
-    <p class="empty-note" id="emptyNote" hidden>No trophies match these filters. Try clearing the search or choosing another kind.</p>
-  </section>
-
-  <section class="about">
-    <h2>About this guide</h2>
-    <p>Names and descriptions are the official PlayStation text, as listed by Exophase and PSNProfiles on 18 November 2026. Every guide on this page is written in our own words for this entry and names its sources beside it — a specific location or step only counts here when it cites where it came from. Where no reliable method was known on launch day (19 November 2026), the guide says so plainly instead of inventing one. On 20 November 2026 four more methods were confirmed by PowerPyx and are marked &ldquo;Newly confirmed&rdquo; in this guide; one more trophy, Bad Luck, I Guess, gained a lead that is still marked unconfirmed.</p>
-    <p>There are no online trophies: all 55 are single-player. Cheats disable trophies and saving, so keep trophy runs cheat-free. This app works fully offline: it loads nothing from the network, and your progress never leaves your browser unless you export it.</p>
-    <p class="sources-line">Main sources: PowerPyx — GTA 6 Trophy Guide &amp; Roadmap; GTA Zone — GTA 6 Trophy List; PlanetGTA6 — GTA 6 Trophies; Push Square — GTA 6 Trophy Guide; Beebom — GTA 6 Meditation Spots; The Gamers Hub — GTA 6 100% Completion Checklist; GameRant — GTA 6 UFO / Aliens Location; GTABase — GTA 6 Achievements &amp; Trophies List.</p>
+  <section class="sources">
+    <h2>Where every fact comes from</h2>
+    <p>Names, descriptions, grades and PSN counts are the official list as published by PlayStation, cross-checked on <a href="https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/">Exophase</a> and <a href="https://psnprofiles.com/trophies/43531-grand-theft-auto-vi">PSNProfiles</a> on 20 November 2026. Every guide is written in our own words from <a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/">PowerPyx&rsquo;s GTA 6 Trophy Guide &amp; Roadmap</a>, which is cited beside each trophy. Where PowerPyx has not yet confirmed a trophy — Bad Luck, I Guess — this guide says so and invents nothing. This guide works fully offline and fetches nothing; the links above open only if you follow them.</p>
   </section>
 </main>
 
 <footer>
-  <p>Leonida Trophy Guide — an unofficial fan-made guide. Not affiliated with, endorsed by or sponsored by Rockstar Games or PlayStation. No game art, logos or screenshots are used.</p>
+  <p>Leonida Ledger — an unofficial, fan-made guide. Grand Theft Auto and GTA are trademarks of Rockstar Games; this guide uses no Rockstar artwork, logos, or game screenshots. Licensed MIT.</p>
 </footer>
 
 <script type="module" src="app.js"></script>
