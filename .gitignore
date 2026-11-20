@@ -1,1 +1,3 @@
 out/
+# Round 2 staging area for screenshots taken in headless Chrome (via CDP) before they are moved into screenshots/
+shots-staging/

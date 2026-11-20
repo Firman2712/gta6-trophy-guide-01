@@ -1,5 +1,7 @@
 /* Leonida Trophy Guide — original styling, no game art. Deep night-sky base,
-   Vice-City neon pink and teal accents. System fonts only, nothing fetched. */
+   Vice-City neon pink and teal accents, with a gold star treatment for the
+   trophies whose methods were newly confirmed on 20 Nov 2026. System fonts
+   only, nothing fetched. */
 * { box-sizing: border-box; }
 :root {
   --bg: #0d0f1e;
@@ -36,18 +38,31 @@ h1 { margin: 0 0 8px; font-size: 40px; line-height: 1.05; letter-spacing: -.01em
 .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .fact { background: rgba(255,255,255,.08); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; }
 .fact b { color: var(--teal); }
+.fact.fresh-fact { background: #3a2f10; border-color: var(--gold); }
+.fact.fresh-fact b { color: var(--gold); }
 .progress-line { display: flex; justify-content: space-between; font-weight: 700; font-size: 15px; }
 .progress-bar { height: 14px; background: #262a47; border-radius: 999px; overflow: hidden; margin-top: 6px; border: 1px solid var(--line); }
 .progress-fill { height: 100%; background: linear-gradient(90deg, var(--pink), var(--teal)); transition: width .3s ease; }
 .progress-sub { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
 main { max-width: 1020px; margin: 0 auto; padding: 20px; }
+.update-banner {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  background: #2b2305; border: 1px solid var(--gold); border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 14px; font-size: 14px;
+}
+.update-banner strong { color: var(--gold); }
+.update-banner button { margin-left: auto; }
 .warn {
   display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
   background: #3a1520; border: 1px solid var(--danger); border-radius: 10px;
   padding: 12px 14px; margin-bottom: 20px; font-size: 14px;
 }
 .warn strong { color: #ffb3b3; }
-.warn button { margin-left: auto; }
+.warn button, .update-banner button {
+  background: var(--panel-2); color: var(--text); border: 1px solid var(--line);
+  border-radius: 8px; padding: 7px 12px; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.warn button:hover, .update-banner button:hover { border-color: var(--teal); }
 .controls { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 24px; }
 .control-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 10px; }
 .control-row:last-child { margin-bottom: 0; }
@@ -66,7 +81,13 @@ input[type="search"] { width: 300px; max-width: 70vw; }
   border-radius: 999px; padding: 7px 14px; font-size: 14px; cursor: pointer;
 }
 .kind-btn:hover, .btn:hover { border-color: var(--teal); }
+.kind-btn:focus-visible, .btn:focus-visible, .guide-toggle:focus-visible,
+.warn button:focus-visible, .update-banner button:focus-visible {
+  outline: 2px solid var(--teal); outline-offset: 2px;
+}
 .kind-btn.active { background: var(--pink); border-color: var(--pink); color: #fff; font-weight: 700; }
+.kind-btn.fresh-btn { border-color: var(--gold); color: var(--gold); }
+.kind-btn.fresh-btn.active { background: var(--gold); border-color: var(--gold); color: #1a1405; }
 .btn { border-radius: 8px; font-weight: 600; }
 .btn.ghost { background: transparent; }
 .import-btn input { display: none; }
@@ -85,6 +106,7 @@ input[type="search"] { width: 300px; max-width: 70vw; }
 .stage-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .stage-chip { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; font-size: 12px; }
 .stage-chip.earned { border-color: var(--teal); color: var(--teal); text-decoration: line-through; }
+.stage-chip.fresh-chip { border-color: var(--gold); color: var(--gold); }
 .stage-progress { font-size: 13px; color: var(--muted); }
 .list-note { color: var(--muted); margin: 0 0 14px; }
 .trophy-list { display: grid; gap: 12px; }
@@ -94,6 +116,7 @@ input[type="search"] { width: 300px; max-width: 70vw; }
 }
 .card.earned { border-color: var(--teal); }
 .card.missable-card { border-left: 5px solid var(--danger); }
+.card.fresh-card { border-left: 5px solid var(--gold); }
 .card input[type="checkbox"] { width: 20px; height: 20px; margin-top: 4px; accent-color: var(--teal); cursor: pointer; }
 .card-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
 .card h3 { margin: 0; font-size: 17px; }
@@ -105,6 +128,7 @@ input[type="search"] { width: 300px; max-width: 70vw; }
 .badge.bronze { background: #3a2415; color: var(--bronze); border: 1px solid var(--bronze); }
 .badge.hidden-badge { background: #2a2f45; color: var(--muted); border: 1px solid var(--line); }
 .badge.missable-badge { background: #3a1520; color: #ffb3b3; border: 1px solid var(--danger); }
+.badge.new-badge { background: #3a2f10; color: var(--gold); border: 1px solid var(--gold); }
 .badge.kind-badge { background: transparent; color: var(--muted); border: 1px solid var(--line); }
 .card .desc { margin: 6px 0 0; color: #d6d9f2; font-style: italic; }
 .card .spoiler-note { margin: 6px 0 0; color: var(--muted); }

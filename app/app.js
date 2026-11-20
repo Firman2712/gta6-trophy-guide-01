@@ -1,8 +1,10 @@
-// Leonida Trophy Guide — tracker logic. Loads the trophy data, renders the
-// checklist and roadmap, and keeps earned trophies in localStorage. The app
-// makes no network request at run time beyond loading its own data file, and
-// the only links it ever shows are the citation links from the data file,
-// which open only when the reader follows them.
+// Leonida Trophy Guide — tracker logic, round 2.
+// Loads the trophy data, renders the checklist and roadmap, and keeps earned
+// trophies in localStorage. Round 2 adds the "Newly confirmed" view: trophies
+// whose method was confirmed on 20 Nov 2026 carry a badge and a filter chip.
+// The app makes no network request at run time beyond loading its own data
+// file, and the only links it ever shows are the citation links from the data
+// file, which open only when the reader follows them.
 const STORAGE_KEY = 'gta6-trophy-guide-progress-v1';
 const params = new URLSearchParams(window.location.search);
 
@@ -58,6 +60,16 @@ function kindLabel(t) {
   return t.kind;
 }
 
+// A trophy counts as newly confirmed when the data file flags it: its method
+// was pinned down on 20 Nov 2026, after the launch-day guides left it blank.
+function isNewlyConfirmed(t) {
+  return t.newlyConfirmed === true;
+}
+
+function newlyConfirmedCount() {
+  return trophies.filter(isNewlyConfirmed).length;
+}
+
 function isEarned(t) {
   if (params.get('demo') === '1' && DEMO_EARNED.includes(t.id)) return true;
   return earned.has(t.id);
@@ -86,6 +98,12 @@ function renderFacts() {
     span.append(b, document.createTextNode(rest));
     factsEl.append(span);
   }
+  const fresh = document.createElement('span');
+  fresh.className = 'fact fresh-fact';
+  const freshB = document.createElement('b');
+  freshB.textContent = `${newlyConfirmedCount()} newly confirmed `;
+  fresh.append(freshB, document.createTextNode('20 Nov 2026 — methods pinned down after launch'));
+  factsEl.append(fresh);
   $('progressText').textContent = `${earnedCount} of ${total} earned`;
   const pct = total ? Math.round((earnedCount / total) * 100) : 0;
   $('progressPct').textContent = `${pct}%`;
@@ -119,8 +137,8 @@ function renderRoadmap() {
     chips.className = 'stage-chips';
     for (const t of members) {
       const chip = document.createElement('span');
-      chip.className = 'stage-chip' + (isEarned(t) ? ' earned' : '');
-      chip.textContent = (isEarned(t) ? '✓ ' : '') + t.name;
+      chip.className = 'stage-chip' + (isEarned(t) ? ' earned' : '') + (isNewlyConfirmed(t) ? ' fresh-chip' : '');
+      chip.textContent = (isEarned(t) ? '✓ ' : '') + (isNewlyConfirmed(t) ? '★ ' : '') + t.name;
       chips.append(chip);
     }
     const prog = document.createElement('p');
@@ -133,8 +151,9 @@ function renderRoadmap() {
 
 function trophyMatches(t) {
   if (kindFilter === 'missable' && !t.missable) return false;
+  if (kindFilter === 'new' && !isNewlyConfirmed(t)) return false;
   if (kindFilter === 'online') return false; // no online trophies in GTA VI
-  if (kindFilter !== 'all' && kindFilter !== 'missable' && t.kind !== kindFilter) return false;
+  if (kindFilter !== 'all' && kindFilter !== 'missable' && kindFilter !== 'new' && t.kind !== kindFilter) return false;
   if (gradeFilter !== 'all' && t.grade !== gradeFilter) return false;
   if (earnedOnly && !isEarned(t)) return false;
   if (searchText) {
@@ -150,12 +169,16 @@ function renderList() {
   $('emptyNote').hidden = visible.length > 0;
   const shown = visible.length;
   const earnedShown = visible.filter(isEarned).length;
-  $('listNote').textContent = shown === trophies.length
-    ? 'All 55 trophies. Tick one off when you earn it; click a trophy to open its guide and sources.'
-    : `Showing ${shown} of ${trophies.length} trophies (${earnedShown} earned in this view).`;
+  if (kindFilter === 'new') {
+    $('listNote').textContent = `Showing ${shown} trophies whose method was newly confirmed on 20 Nov 2026 (${earnedShown} earned in this view). Each one used to read "unconfirmed" — now it has a real method, cited to PowerPyx.`;
+  } else if (shown === trophies.length) {
+    $('listNote').textContent = 'All 55 trophies. Tick one off when you earn it; click a trophy to open its guide and sources.';
+  } else {
+    $('listNote').textContent = `Showing ${shown} of ${trophies.length} trophies (${earnedShown} earned in this view).`;
+  }
   for (const t of visible) {
     const card = document.createElement('article');
-    card.className = 'card' + (isEarned(t) ? ' earned' : '') + (t.missable ? ' missable-card' : '');
+    card.className = 'card' + (isEarned(t) ? ' earned' : '') + (t.missable ? ' missable-card' : '') + (isNewlyConfirmed(t) ? ' fresh-card' : '');
     card.dataset.trophyId = String(t.id);
 
     const box = document.createElement('input');
@@ -193,6 +216,12 @@ function renderList() {
       mb.className = 'badge missable-badge';
       mb.textContent = 'Potentially missable';
       head.append(mb);
+    }
+    if (isNewlyConfirmed(t)) {
+      const nb = document.createElement('span');
+      nb.className = 'badge new-badge';
+      nb.textContent = 'Newly confirmed · 20 Nov 2026';
+      head.append(nb);
     }
     const kb = document.createElement('span');
     kb.className = 'badge kind-badge';
@@ -275,6 +304,12 @@ function download(filename, text) {
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
+function setKindFilter(kind) {
+  kindFilter = kind;
+  document.querySelectorAll('#kindFilters .kind-btn').forEach((b) => b.classList.toggle('active', b.dataset.kind === kind));
+  renderAll();
+}
+
 async function init() {
   const response = await fetch('data/trophies.json');
   const doc = await response.json();
@@ -285,11 +320,7 @@ async function init() {
   $('spoilerToggle').checked = spoilerMode;
   document.querySelectorAll('#kindFilters .kind-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.kind === kindFilter);
-    btn.addEventListener('click', () => {
-      kindFilter = btn.dataset.kind;
-      document.querySelectorAll('#kindFilters .kind-btn').forEach((b) => b.classList.toggle('active', b === btn));
-      renderAll();
-    });
+    btn.addEventListener('click', () => setKindFilter(btn.dataset.kind));
   });
   $('gradeFilter').addEventListener('change', (e) => {
     gradeFilter = e.target.value;
@@ -308,12 +339,21 @@ async function init() {
     renderAll();
   });
   $('showMissable').addEventListener('click', () => {
-    kindFilter = 'missable';
-    document.querySelectorAll('#kindFilters .kind-btn').forEach((b) => b.classList.toggle('active', b.dataset.kind === 'missable'));
-    renderAll();
+    setKindFilter('missable');
     const first = document.querySelector('.card.missable-card');
     if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
+  const showNewBtn = $('showNew');
+  if (showNewBtn) {
+    // Label the banner button with the live count, so it stays true even if
+    // the data file gains more newly confirmed trophies in a later round.
+    showNewBtn.textContent = `Show the ${newlyConfirmedCount()} newly confirmed`;
+    showNewBtn.addEventListener('click', () => {
+      setKindFilter('new');
+      const first = document.querySelector('.card.fresh-card');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
   $('exportBtn').addEventListener('click', () => {
     const payload = {
       game: 'Grand Theft Auto VI',
