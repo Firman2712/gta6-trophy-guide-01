@@ -24,6 +24,7 @@ export function buildDossier(dir: string, caps = { text_max_bytes: 163840, scree
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = resolve(fileURLToPath(new URL('.', import.meta.url)));
-  writeFileSync(join(root, 'dossier.json'), buildDossier(root));
+  const outDir = process.env.MAKEFUN_OUTPUT_DIR || root;
+  writeFileSync(join(outDir, 'dossier.json'), buildDossier(root));
   console.log('dossier.json written');
 }

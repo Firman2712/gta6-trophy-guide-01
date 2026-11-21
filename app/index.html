@@ -4,42 +4,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Leonida Ledger — GTA VI Trophy Guide</title>
-  <meta name="description" content="Leonida Ledger — a complete, spoiler-aware trophy guide for Grand Theft Auto VI: every trophy, its grade, how to unlock it, and a step-by-step roadmap to the Platinum.">
+  <meta name="description" content="Leonida Ledger — a complete, spoiler-aware trophy guide for Grand Theft Auto VI: all 55 trophies, how to unlock each one, missable warnings, and a four-stage roadmap to the Platinum.">
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
+      <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5</p>
       <h1>Leonida Ledger</h1>
-      <p class="tagline">GTA VI Trophy Guide</p>
+      <p class="tagline">Every trophy, every step, one road to the Platinum.</p>
+      <p class="trophy-breakdown" id="trophy-breakdown">
+        <strong>55 trophies</strong> in the official list:
+        <span class="breakdown-item"><span class="grade-dot grade-platinum" aria-hidden="true"></span>1 Platinum</span>
+        <span class="breakdown-item"><span class="grade-dot grade-gold" aria-hidden="true"></span>2 Gold</span>
+        <span class="breakdown-item"><span class="grade-dot grade-silver" aria-hidden="true"></span>6 Silver</span>
+        <span class="breakdown-item"><span class="grade-dot grade-bronze" aria-hidden="true"></span>46 Bronze</span>
+      </p>
     </div>
   </header>
 
   <main class="page">
     <section class="intro" aria-label="About this guide">
       <p>
-        Every GTA VI trophy in one place — story, activities, collectibles,
-        exploration and misc — with clear unlock steps, missable warnings and
-        spoiler-free mode. Check off trophies as you earn them, follow the
-        roadmap to the Platinum, and export your progress to keep it safe.
+        The full GTA VI trophy list in one place — story, activities,
+        collectibles, exploration and misc — with clear unlock steps,
+        missable warnings and a spoiler-free mode. Tick off trophies as you
+        earn them, follow the four-stage roadmap to the Platinum, and export
+        your progress so you never lose it.
       </p>
     </section>
 
     <section class="progress" aria-label="Trophy progress">
       <div class="progress-row">
-        <span id="progress-text" aria-live="polite">0 of 0 trophies earned</span>
-        <span id="trophy-count" aria-live="polite">0 trophies shown</span>
+        <span id="progress-text" aria-live="polite">0/55 trophies earned</span>
+        <span id="trophy-count" aria-live="polite">55 trophies</span>
       </div>
-      <div class="progress-track" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="progress-track" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0">
         <div id="progress-bar"></div>
       </div>
+      <ul class="grade-counters" id="grade-counters" aria-label="Progress by grade">
+        <li><span class="grade-dot grade-platinum" aria-hidden="true"></span>Platinum <strong id="count-platinum">0/1</strong></li>
+        <li><span class="grade-dot grade-gold" aria-hidden="true"></span>Gold <strong id="count-gold">0/2</strong></li>
+        <li><span class="grade-dot grade-silver" aria-hidden="true"></span>Silver <strong id="count-silver">0/6</strong></li>
+        <li><span class="grade-dot grade-bronze" aria-hidden="true"></span>Bronze <strong id="count-bronze">0/46</strong></li>
+      </ul>
     </section>
 
     <section class="filters" aria-label="Filter trophies">
       <label class="filter-field filter-search">
         <span>Search</span>
-        <input type="text" id="search-input" placeholder="Search trophies…" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Search trophies by name or guide…" autocomplete="off">
       </label>
 
       <label class="filter-field">
@@ -83,13 +98,32 @@
       <button type="button" id="reset-btn">Reset progress</button>
     </section>
 
-    <section aria-label="Trophy list">
-      <h2>Trophies</h2>
-      <div id="trophy-list"></div>
-    </section>
+    <div class="content-grid">
+      <section class="trophy-section" aria-label="Trophy list">
+        <h2>Trophies</h2>
+        <div id="trophy-list"></div>
+      </section>
+
+      <aside class="side-column">
+        <section class="guide-pane-section" aria-label="Trophy guide">
+          <h2>Guide</h2>
+          <div id="guide-pane">
+            <p class="guide-pane-empty">Select a trophy in the list to see its full guide and sources here.</p>
+            <div id="guide-pane-content"></div>
+          </div>
+        </section>
+
+        <section class="missables-section" aria-label="Missable trophies">
+          <h2>Missables — don&rsquo;t miss these</h2>
+          <p class="section-note">Trophies that can be locked out if you pass a story point or a one-time event. Grab them on your first playthrough or keep a backup save.</p>
+          <div id="missables"></div>
+        </section>
+      </aside>
+    </div>
 
     <section aria-label="Roadmap">
       <h2>Roadmap to the Platinum</h2>
+      <p class="section-note">Four stages, in play order — story first, then early activities, exploration and collectibles, and finally cleanup and misc.</p>
       <div id="roadmap"></div>
     </section>
 
