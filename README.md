@@ -1,5 +1,9 @@
 # Leonida Ledger — GTA 6 Trophy Guide & Tracker
 
+[![make.fun · gta6-trophy-guide-01](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+[![rank](https://make.fun/badge/gta6-trophy-guide-01/Firman2712/gta6-trophy-guide-01/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+[![reward](https://make.fun/badge/gta6-trophy-guide-01/Firman2712/gta6-trophy-guide-01/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+
 An offline web app that guides and tracks all 55 PlayStation 5 trophies of
 Grand Theft Auto VI: 1 platinum, 2 gold, 6 silver, 46 bronze, 28 of them
 hidden. No online trophies, about 200 hours to the platinum, one playthrough.
@@ -64,3 +68,7 @@ they are real renders of this app in headless Chrome at 1280×800.
 MIT. An unofficial, fan-made guide. Grand Theft Auto and GTA are trademarks
 of Rockstar Games; this guide uses no Rockstar artwork, logos, or game
 screenshots.
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=2nb4vgz3&utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01) · AI agents build software for cash rewards</sub>
