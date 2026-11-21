@@ -1,127 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leonida Ledger — GTA 6 Trophy Guide &amp; Tracker</title>
-<meta name="description" content="An offline guide and tracker for all 55 Grand Theft Auto VI trophies on PlayStation 5: checklist, roadmap, missable warning, and a cited guide for every trophy.">
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Leonida Ledger — a complete GTA VI trophy guide and tracker for all 55 PlayStation 5 trophies, with a spoiler-free mode and a four-stage platinum roadmap.">
+  <title>Leonida Ledger — GTA VI Trophy Guide</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="masthead">
-  <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; works offline</p>
-  <h1>Leonida Ledger</h1>
-  <p class="tagline">Every one of the 55 trophies, with a plan to the platinum and a guide you can trust — checked, cited, and saved in your browser.</p>
-  <dl class="statstrip">
-    <div><dt>Trophies</dt><dd>55</dd></div>
-    <div><dt>Platinum</dt><dd>1</dd></div>
-    <div><dt>Gold</dt><dd>2</dd></div>
-    <div><dt>Silver</dt><dd>6</dd></div>
-    <div><dt>Bronze</dt><dd>46</dd></div>
-    <div><dt>Hidden</dt><dd>28</dd></div>
-    <div><dt>Online</dt><dd>0</dd></div>
-    <div><dt>To platinum</dt><dd>~200 h</dd></div>
-  </dl>
-  <div class="progressline" role="status">
-    <span id="earnedLabel">0 of 55 earned</span>
-    <div class="progressbar"><div id="progressFill" style="width:0%"></div></div>
-    <span id="percentLabel">0%</span>
-  </div>
-</header>
-
-<main>
-  <section class="freshbanner" id="freshBanner">
-    <h2><span class="freshdot" aria-hidden="true"></span>Newly confirmed — 4 trophies</h2>
-    <p>PowerPyx has now pinned down four trophies that were unknown at launch: <strong>In The Beginning…</strong> (Ocean Beach cocktail), <strong>Capital Offense</strong> (blue Banshee through the showroom window), <strong>The Truth Is Out There</strong> (the UFO easter egg), and <strong>Ten Pin</strong> (bike melee drive-by). Each carries a <span class="badge fresh">Newly confirmed</span> badge in the list.</p>
-    <button type="button" id="showFreshBtn">Show only the 4 newly confirmed</button>
-  </section>
-
-  <section class="warnbox" id="missableBox">
-    <h2>One trophy can be missed — protect it in Chapter 1</h2>
-    <p><strong>Positive Mental Attitude</strong> (meditate at every spot) is the only trophy PowerPyx flags as possibly missable. In Chapter 1, after the mission Down to Earth, Lucia talks about meditating in the kitchen in the morning. Follow her to the balcony and accept — after Chapter 1 that moment is gone. Everything else on this list can be finished after the story.</p>
-  </section>
-
-  <section class="roadmap" id="roadmap">
-    <h2>The road to the platinum — 4 stages</h2>
-    <p class="sectionnote">Built from the official descriptions and PowerPyx&rsquo;s roadmap. Difficulty 4/10, one playthrough, no mission replay — so keep a save at the start and end of each chapter. Cheats disable trophies and saving: keep them off.</p>
-    <ol class="stages">
-      <li data-stage="1">
-        <h3>Stage 1 — Play the story, guard the meditation</h3>
-        <p class="stagehours">60–80 hours &middot; Chapters 1–5</p>
-        <p>Finish the story and enjoy it. Do the Chapter 1 balcony meditation with Lucia, scan vehicles and study animals as you go, and take every optional mission you pass. Progress toward the 100% checklist already counts.</p>
-        <p class="stagecount" id="stageCount1"></p>
-      </li>
-      <li data-stage="2">
-        <h3>Stage 2 — The 100% checklist &amp; 70 of 80 challenges</h3>
-        <p class="stagehours">~100 hours &middot; after the story</p>
-        <p>The checklist opens under Progress, then Stats. It is lenient — about 60% true completion — and needs every robbery, underwater find, shooting range, drone race and Bret quest, plus 70 of 80 challenges, so you can skip the hardest ten.</p>
-        <p class="stagecount" id="stageCount2"></p>
-      </li>
-      <li data-stage="3">
-        <h3>Stage 3 — Strangers &amp; Freaks and side cleanup</h3>
-        <p class="stagehours">~10 hours &middot; free-roam</p>
-        <p>Strangers are not needed for 100%, so finish the 8 counting strands and the character questlines that are still open — Andy, Kenton, Billy, Randy, Tyrone and Bret — plus any side trophy left behind.</p>
-        <p class="stagecount" id="stageCount3"></p>
-      </li>
-      <li data-stage="4">
-        <h3>Stage 4 — Money, garages, and the last sweeps</h3>
-        <p class="stagehours">Cleanup &middot; free-roam</p>
-        <p>Launder $250,000 of marked bills, spend $100,000 in shops, buy the 8 garages, register 10 vehicles, and mop up the remaining activities and collectibles. The platinum pops with the last trophy.</p>
-        <p class="stagecount" id="stageCount4"></p>
-      </li>
-    </ol>
-  </section>
-
-  <section class="tracker" id="tracker">
-    <h2>Trophy checklist</h2>
-    <div class="toolbar">
-      <label class="searchwrap">Search
-        <input type="search" id="search" placeholder="Name, mission, or keyword…" autocomplete="off">
-      </label>
-      <label class="gradewrap">Grade
-        <select id="grade">
-          <option value="all">All grades</option>
-          <option value="platinum">Platinum</option>
-          <option value="gold">Gold</option>
-          <option value="silver">Silver</option>
-          <option value="bronze">Bronze</option>
-        </select>
-      </label>
-      <fieldset class="kindchips" id="kindChips">
-        <legend>Kind</legend>
-        <button type="button" data-kind="all" class="chip on" aria-pressed="true">All</button>
-        <button type="button" data-kind="story" class="chip" aria-pressed="false">Story</button>
-        <button type="button" data-kind="side" class="chip" aria-pressed="false">Side quests</button>
-        <button type="button" data-kind="collectible" class="chip" aria-pressed="false">Collectibles</button>
-        <button type="button" data-kind="activity" class="chip" aria-pressed="false">Activities</button>
-        <button type="button" data-kind="crime" class="chip" aria-pressed="false">Crime</button>
-        <button type="button" data-kind="missable" class="chip" aria-pressed="false">Missable</button>
-        <button type="button" data-kind="fresh" class="chip" aria-pressed="false">Newly confirmed</button>
-      </fieldset>
-      <label class="toggle"><input type="checkbox" id="spoiler"> Spoiler-free mode <span class="hint">hides story trophy names until earned</span></label>
-      <div class="filebtns">
-        <button type="button" id="exportBtn">Export progress</button>
-        <button type="button" id="importBtn">Import progress</button>
-        <input type="file" id="importFile" accept=".json,application/json" hidden>
-        <button type="button" id="resetBtn">Reset all</button>
-      </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; 55 trophies</p>
+      <h1>Leonida Ledger</h1>
+      <p class="subtitle">Every GTA VI trophy in one place — check them off as you play, hide the spoilers, and follow the road to platinum.</p>
+      <p class="header-note">Progress is saved in this browser only. Nothing leaves your device.</p>
     </div>
-    <p class="resultline" id="resultLine" role="status"></p>
-    <div id="list" class="trophylist"></div>
-    <noscript><p class="warnbox">This tracker needs JavaScript. The trophy list and guides live in <code>data/trophies.json</code>.</p></noscript>
-  </section>
+  </header>
 
-  <section class="sources">
-    <h2>Where every fact comes from</h2>
-    <p>Names, descriptions, grades and PSN counts are the official list as published by PlayStation, cross-checked on <a href="https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/">Exophase</a> and <a href="https://psnprofiles.com/trophies/43531-grand-theft-auto-vi">PSNProfiles</a> on 20 November 2026. Every guide is written in our own words from <a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/">PowerPyx&rsquo;s GTA 6 Trophy Guide &amp; Roadmap</a>, which is cited beside each trophy. Where PowerPyx has not yet confirmed a trophy — Bad Luck, I Guess — this guide says so and invents nothing. This guide works fully offline and fetches nothing; the links above open only if you follow them.</p>
-  </section>
-</main>
+  <main>
+    <section class="toolbar" aria-label="Search, filter and manage trophies">
+      <div class="toolbar-row toolbar-search">
+        <label class="visually-hidden" for="q">Search trophies</label>
+        <input type="search" id="q" placeholder="Search trophies…" autocomplete="off">
+      </div>
 
-<footer>
-  <p>Leonida Ledger — an unofficial, fan-made guide. Grand Theft Auto and GTA are trademarks of Rockstar Games; this guide uses no Rockstar artwork, logos, or game screenshots. Licensed MIT.</p>
-</footer>
+      <div class="toolbar-row toolbar-filters">
+        <label class="filter-label" for="grade-filter">
+          Grade
+          <select id="grade-filter">
+            <option value="all">All grades</option>
+            <option value="platinum">Platinum</option>
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
+            <option value="bronze">Bronze</option>
+          </select>
+        </label>
 
-<script type="module" src="app.js"></script>
+        <label class="filter-label" for="kind-filter">
+          Type
+          <select id="kind-filter">
+            <option value="all">All types</option>
+            <option value="story">Story</option>
+            <option value="collectible">Collectible</option>
+            <option value="activity">Activity</option>
+            <option value="exploration">Exploration</option>
+            <option value="misc">Misc</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="toolbar-row toolbar-toggles">
+        <label class="toggle-label" for="spoiler-toggle">
+          <input type="checkbox" id="spoiler-toggle">
+          <span>Spoiler-free</span>
+        </label>
+        <label class="toggle-label" for="fresh-toggle">
+          <input type="checkbox" id="fresh-toggle">
+          <span>Newly confirmed only</span>
+        </label>
+      </div>
+
+      <div class="toolbar-row toolbar-actions">
+        <button type="button" id="export-btn">Export progress</button>
+        <button type="button" id="import-btn">Import progress</button>
+        <input type="file" id="import-file" accept=".json" hidden>
+        <button type="button" id="reset-btn" class="danger">Reset progress</button>
+      </div>
+    </section>
+
+    <section id="stats" aria-label="Platinum progress">
+      <div class="stats-text">
+        <span><strong id="earned-count">0</strong> / 55 earned</span>
+        <span id="earned-pct">0%</span>
+      </div>
+      <div id="platinum-bar" role="progressbar" aria-label="Progress towards platinum" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="platinum-fill"></div>
+      </div>
+      <p class="stats-hint">Earn every trophy to unlock the platinum. The bar above tracks all 55.</p>
+    </section>
+
+    <div id="status" role="status" aria-live="polite">Loading trophies…</div>
+
+    <noscript>
+      <p class="noscript-note">
+        This tracker needs JavaScript enabled: the trophy list, progress bar,
+        and roadmap are rendered in your browser from the bundled data file.
+        No network connection is required once the files are saved locally.
+      </p>
+    </noscript>
+
+    <section id="roadmap" aria-label="Platinum roadmap">
+      <h2>Platinum roadmap</h2>
+      <p class="section-intro">Four stages, in play order. Finish one before moving on and you will never have to replay the story for a missable trophy.</p>
+      <div id="roadmap-stages"></div>
+    </section>
+
+    <section id="tracker" aria-label="All trophies">
+      <h2>All trophies</h2>
+      <p class="section-intro">Tap a trophy to mark it earned. Use search and the filters above to narrow the list.</p>
+      <div id="trophy-list"></div>
+    </section>
+
+    <section class="about" aria-label="About this guide">
+      <h2>How to use this guide</h2>
+      <ol>
+        <li>Play the story once, following the roadmap stages in order.</li>
+        <li>Turn on <strong>Spoiler-free</strong> if you have not finished the story yet.</li>
+        <li>Check off trophies as you earn them — your progress stays in this browser.</li>
+        <li>Use <strong>Export progress</strong> to keep a backup, and <strong>Import progress</strong> to restore it.</li>
+      </ol>
+      <p class="about-note">Trophy names, descriptions and unlock hints are written for players, not copied from any store page. Availability and wording may change before launch — check back for updates.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Leonida Ledger is an unofficial fan guide. Grand Theft Auto and GTA VI are trademarks of Take-Two Interactive.</p>
+    <p>Built for the <a href="https://make.fun/bounty/gta6-trophy-guide-01">make.fun GTA VI trophy guide bounty</a>.</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
