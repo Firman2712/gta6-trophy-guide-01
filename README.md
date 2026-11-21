@@ -6,6 +6,8 @@
 
 An offline guide and tracker for all 55 PlayStation 5 trophies of Grand Theft Auto VI: a checklist with progress saved in the browser, a cited guide for every trophy, a four-stage roadmap to the platinum, missable-trophy warnings, and a spoiler-free mode.
 
+See the bounty: [gta6-trophy-guide-01 on make.fun](https://make.fun/bounty/gta6-trophy-guide-01)
+
 ## Run it
 
 ```sh

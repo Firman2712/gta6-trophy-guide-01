@@ -1,30 +1,52 @@
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { buildDossier as vendorBuildDossier } from './vendor/makefun-frontend.ts';
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { buildDossier } from "./vendor/makefun-frontend.ts";
 
-// Dossier builder for the Leonida Ledger guide: validates the guide's own
-// inputs (55 trophies, the app files, the shots manifest) then delegates the
-// dossier itself to the vendored make.fun library. Run: `node main.ts`.
-export function buildDossier(dir: string, caps = { text_max_bytes: 163840, screenshots: { max: 4, max_bytes: 262144 } }) {
-  const root = resolve(dir);
-  if (!existsSync(join(root, 'screenshots'))) {
-    throw new Error('screenshots/: no such directory: the dossier needs screenshots of the running app');
+const TEXT_LIMIT_BYTES = 163840;
+const SCREENSHOT_LIMITS = { max: 4, max_bytes: 262144 };
+
+const REQUIRED_APP_FILES = [
+  "app/index.html",
+  "app/style.css",
+  "app/app.js",
+  "app/data/trophies.json",
+];
+
+export function buildGuideDossier(
+  dir: string,
+  limits: { text_max_bytes: number; screenshots: { max: number; max_bytes: number } },
+): Uint8Array {
+  const shotsDir = join(dir, "screenshots");
+  if (!existsSync(shotsDir)) {
+    throw new Error(`screenshots directory missing: ${shotsDir}`);
   }
-  const trophies = JSON.parse(readFileSync(join(root, 'app/data/trophies.json'), 'utf8'));
-  const list = Array.isArray(trophies) ? trophies : trophies.trophies;
-  if (!Array.isArray(list) || list.length !== 55) {
-    throw new Error(`trophies: expected 55 trophies, found ${Array.isArray(list) ? list.length : 'none'}`);
+
+  const trophiesPath = join(dir, "app", "data", "trophies.json");
+  const trophiesDoc = JSON.parse(readFileSync(trophiesPath, "utf8"));
+  const trophies = trophiesDoc.trophies;
+  if (!Array.isArray(trophies) || trophies.length !== 55) {
+    throw new Error("trophies.json must hold an object whose trophies array has exactly 55 entries");
   }
-  for (const f of ['app/index.html', 'app/style.css', 'app/app.js', 'shots.json']) {
-    readFileSync(join(root, f));
+
+  for (const rel of [...REQUIRED_APP_FILES, "shots.json"]) {
+    readFileSync(join(dir, rel));
   }
-  return vendorBuildDossier(root, caps);
+
+  return buildDossier(dir, limits);
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const root = resolve(fileURLToPath(new URL('.', import.meta.url)));
-  const outDir = process.env.MAKEFUN_OUTPUT_DIR || root;
-  writeFileSync(join(outDir, 'dossier.json'), buildDossier(root));
-  console.log('dossier.json written');
+const entryFile = fileURLToPath(import.meta.url);
+const isMain = process.argv[1] === entryFile;
+
+if (isMain) {
+  const repoRoot = dirname(entryFile);
+  const dossier = buildGuideDossier(repoRoot, {
+    text_max_bytes: TEXT_LIMIT_BYTES,
+    screenshots: SCREENSHOT_LIMITS,
+  });
+  const outDir = process.env.MAKEFUN_OUTPUT_DIR || repoRoot;
+  const outPath = join(outDir, "dossier.json");
+  writeFileSync(outPath, dossier);
+  console.log(`dossier.json written to ${outPath}`);
 }
